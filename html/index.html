@@ -40,7 +40,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/profle.png" class="img-circle" alt="Avatar"> <span>欢迎，管理员</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-key" aria-hidden="true"></i> <span>修改密码</span></a></li>
+								<li data-toggle="modal" data-target="#updateMyPasswordModal"><a href="#"><i class="fa fa-key" aria-hidden="true"></i> <span>修改密码</span></a></li>
 								<li id="logoutButton"><a href="#"><i class="lnr lnr-exit"></i> <span>退出</span></a></li>
 							</ul>
 						</li>
@@ -447,6 +447,38 @@
 	</div>
 	<!-- END WRAPPER -->
 
+	<!-- 修改密码模态框（Modal） -->
+	<div class="modal fade" id="updateMyPasswordModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4>修改密码</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">旧密码</label>
+							<div class="col-sm-7"><input type="text" class="form-control" placeholder="请输入旧密码" id="updateMyPasswordModal_oldPasswordInput"></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">新密码</label>
+							<div class="col-sm-7"><input type="text" class="form-control" placeholder="请输入新密码" id="updateMyPasswordModal_newPasswordInput"></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">再次输入新密码</label>
+							<div class="col-sm-7"><input type="text" class="form-control" placeholder="请再次输入新密码" id="updateMyPasswordModal_repeatNewPasswordInput"></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label"></label>
+							<div class="col-sm-7"><a href="#" class="btn btn-danger" role="button" id="updateMyPasswordModal_button">修改</a></div>
+						</div>
+					</form>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -462,11 +494,25 @@
 		$(function(){
 			$("#logoutButton").click(function(){
 				fn_api({
-					"apiName": "System_Logout_Api",
-					"token": fn_get_token()
+					"apiName": "System_Logout_Api"
 				}, function(){
 					fn_remove_token();
 					window.location.href = "login.html";
+				});
+			});
+			$("#updateMyPasswordModal_button").click(function(){
+				var newLoginPassword = $("#updateMyPasswordModal_newPasswordInput").val();
+				var repeatNewLoginPassword = $("#updateMyPasswordModal_repeatNewPasswordInput").val();
+				if (repeatNewLoginPassword != newLoginPassword) {
+					toastr.error("两次输入的密码不一致");
+					return;
+				}
+				fn_api({
+					"apiName": "System_UpdateMyPassword_Api",
+					"oldLoginPassword": $("#updateMyPasswordModal_oldPasswordInput").val(),
+					"newLoginPassword": newLoginPassword
+				}, function(){
+					toastr.info("修改成功");
 				});
 			});
 		});
