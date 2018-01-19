@@ -1,4 +1,4 @@
-class EditMyPasswordModal extends React.Component {
+class System_EditMyPassword_Modal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -11,8 +11,8 @@ class EditMyPasswordModal extends React.Component {
 	}
 
 	componentDidMount() {
-		$("#editMyPasswordModal").on('shown.bs.modal', function(e){
-			$("#editMyPasswordModal input")[0].focus();
+		$("#system_EditMyPassword_Modal").on('shown.bs.modal', function(e){
+			$("#system_EditMyPassword_Modal input")[0].focus();
 		});
 	}
 
@@ -39,11 +39,11 @@ class EditMyPasswordModal extends React.Component {
 	}
 
 	show() {
-		$("#editMyPasswordModal").modal({keyboard: true});
+		$("#system_EditMyPassword_Modal").modal({keyboard: true});
 	}
 
 	hide() {
-		$("#editMyPasswordModal").modal("hide");
+		$("#system_EditMyPassword_Modal").modal("hide");
 		this.setState({
 			oldPassword: "",
 			newPassword: "",
@@ -53,7 +53,7 @@ class EditMyPasswordModal extends React.Component {
 
 	render() {
 		return (
-			<div className="modal fade" id="editMyPasswordModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div className="modal fade" id="system_EditMyPassword_Modal" tabindex="-1" role="dialog" aria-hidden="true">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">
@@ -87,4 +87,4 @@ class EditMyPasswordModal extends React.Component {
 	}
 }
 
-var editMyPasswordModal = ReactDOM.render(<EditMyPasswordModal />, $("<div></div>").appendTo(document.body)[0]);
+var system_EditMyPassword_Modal = ReactDOM.render(<System_EditMyPassword_Modal />, $("<div></div>").appendTo(document.body)[0]);

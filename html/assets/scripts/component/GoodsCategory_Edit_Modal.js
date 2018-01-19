@@ -1,10 +1,11 @@
-class EditGoodsCategoryModal extends React.Component {
+class GoodsCategory_Edit_Modal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			id: null,
 			data: {
-				name: null
+				name: null,
+				reorder: null
 			}
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -12,14 +13,14 @@ class EditGoodsCategoryModal extends React.Component {
 	}
 
 	componentDidMount() {
-		$('#editGoodsCategoryModal').on('shown.bs.modal', function(e){
-			$("#editGoodsCategoryModal input")[0].focus();
+		$('#goodsCategory_Edit_Modal').on('shown.bs.modal', function(e){
+			$("#goodsCategory_Edit_Modal input")[0].focus();
 		});
 	}
 
-	handleChange(e) {
+	handleChange(e, field) {
 		var data = this.state.data;
-		data.name = e.target.value;
+		data[field] = e.target.value;
 		this.setState({data: data});
 	}
 
@@ -28,26 +29,27 @@ class EditGoodsCategoryModal extends React.Component {
 		fn_api({
 			"apiName": "GoodsCategory_Update_Api",
 			"categoryId": this.state.id,
-			"name": this.state.data.name
+			"name": this.state.data.name,
+			"reorder": this.state.data.reorder
 		}, function(resp){
 			toastr.info("修改成功");
 			modal.hide();
-			goodsCategoryPanel.reload();
+			goodsCategory_Main_Panel.reload();
 		});
 	}
 
 	show(state) {
 		this.setState(state);
-		$("#editGoodsCategoryModal").modal({keyboard: true});
+		$("#goodsCategory_Edit_Modal").modal({keyboard: true});
 	}
 
 	hide() {
-		$("#editGoodsCategoryModal").modal("hide");
+		$("#goodsCategory_Edit_Modal").modal("hide");
 	}
 
 	render() {
 		return (
-			<div className="modal fade" id="editGoodsCategoryModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div className="modal fade" id="goodsCategory_Edit_Modal" tabindex="-1" role="dialog" aria-hidden="true">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">
@@ -58,7 +60,11 @@ class EditGoodsCategoryModal extends React.Component {
 							<form className="form-horizontal" role="form">
 								<div className="form-group">
 									<label className="col-sm-3 control-label">名字</label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.data.name} onChange={this.handleChange} /></div>
+									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.data.name} onChange={e => this.handleChange(e, "name")} /></div>
+								</div>
+								<div className="form-group">
+									<label className="col-sm-3 control-label">排序号<small>（小的在前）</small></label>
+									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.data.reorder} onChange={e => this.handleChange(e, "reorder")} /></div>
 								</div>
 								<div className="form-group">
 									<label className="col-sm-3 control-label"></label>
@@ -73,4 +79,4 @@ class EditGoodsCategoryModal extends React.Component {
 	}
 }
 
-var editGoodsCategoryModal = ReactDOM.render(<EditGoodsCategoryModal />, $("<div></div>").appendTo(document.body)[0]);
+var goodsCategory_Edit_Modal = ReactDOM.render(<GoodsCategory_Edit_Modal />, $("<div></div>").appendTo(document.body)[0]);

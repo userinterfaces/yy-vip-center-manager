@@ -1,4 +1,4 @@
-class Footer extends React.Component {
+class System_Footer extends React.Component {
 
 	render() {
 		return (
@@ -11,4 +11,4 @@ class Footer extends React.Component {
 	}
 }
 
-var footer = ReactDOM.render(<Footer />, document.getElementById("footerContainer"));
+var system_Footer = ReactDOM.render(<System_Footer />, document.getElementById("system_Footer_Container"));

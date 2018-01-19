@@ -1,4 +1,4 @@
-class Navbar extends React.Component {
+class System_Navbar extends React.Component {
 
 	handleClickLogout() {
 		fn_api({
@@ -44,7 +44,7 @@ class Navbar extends React.Component {
 							<li className="dropdown">
 								<a href="#" className="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/profle.png" className="img-circle" alt="Avatar" /> <span>欢迎，管理员</span> <i className="icon-submenu lnr lnr-chevron-down"></i></a>
 								<ul className="dropdown-menu">
-									<li data-toggle="modal" data-target="#editMyPasswordModal"><a href="#"><i className="fa fa-key" aria-hidden="true"></i> <span>修改密码</span></a></li>
+									<li data-toggle="modal" data-target="#system_EditMyPassword_Modal"><a href="#"><i className="fa fa-key" aria-hidden="true"></i> <span>修改密码</span></a></li>
 									<li onClick={this.handleClickLogout}><a href="#"><i className="lnr lnr-exit"></i> <span>退出</span></a></li>
 								</ul>
 							</li>
@@ -56,4 +56,4 @@ class Navbar extends React.Component {
 	}
 }
 
-var navbar = ReactDOM.render(<Navbar />, document.getElementById("navbarContainer"));
+var system_Navbar = ReactDOM.render(<System_Navbar />, document.getElementById("system_Navbar_Container"));

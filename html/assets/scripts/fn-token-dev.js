@@ -7,5 +7,5 @@ function fn_set_token(token) {
 }
 
 function fn_get_token() {
-	return "2bb82daf-744c-40b6-9f45-cddce447ae72";
+	return "f96df563-8970-4bd5-b6cc-13fca2ef924e";
 }

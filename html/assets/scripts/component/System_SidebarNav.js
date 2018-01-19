@@ -1,4 +1,4 @@
-class SidebarNav extends React.Component {
+class System_SidebarNav extends React.Component {
 
 	componentDidMount() {
 		$('.sidebar a[data-toggle="collapse"]').on('click', function() {
@@ -51,4 +51,4 @@ class SidebarNav extends React.Component {
 	}
 }
 
-var sidebarNav = ReactDOM.render(<SidebarNav />, document.getElementById("sidebarNavContainer"));
+var system_SidebarNav = ReactDOM.render(<System_SidebarNav />, document.getElementById("system_SidebarNav_Container"));
