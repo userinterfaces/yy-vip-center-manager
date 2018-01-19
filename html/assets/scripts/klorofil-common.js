@@ -4,26 +4,6 @@ $(document).ready(function() {
 	/*	TOP NAVIGATION AND LAYOUT
 	/*----------------------------------*/
 
-	$('.btn-toggle-fullwidth').on('click', function() {
-		if(!$('body').hasClass('layout-fullwidth')) {
-			$('body').addClass('layout-fullwidth');
-
-		} else {
-			$('body').removeClass('layout-fullwidth');
-			$('body').removeClass('layout-default'); // also remove default behaviour if set
-		}
-
-		$(this).find('.lnr').toggleClass('lnr-arrow-left-circle lnr-arrow-right-circle');
-
-		if($(window).innerWidth() < 1025) {
-			if(!$('body').hasClass('offcanvas-active')) {
-				$('body').addClass('offcanvas-active');
-			} else {
-				$('body').removeClass('offcanvas-active');
-			}
-		}
-	});
-
 	$(window).on('load', function() {
 		if($(window).innerWidth() < 1025) {
 			$('.btn-toggle-fullwidth').find('.icon-arrows')
@@ -44,27 +24,6 @@ $(document).ready(function() {
 			$('.main').css('min-height', $('#sidebar-nav').height());
 		}
 	});
-
-
-	/*-----------------------------------/
-	/*	SIDEBAR NAVIGATION
-	/*----------------------------------*/
-
-	$('.sidebar a[data-toggle="collapse"]').on('click', function() {
-		if($(this).hasClass('collapsed')) {
-			$(this).addClass('active');
-		} else {
-			$(this).removeClass('active');
-		}
-	});
-
-	if( $('.sidebar-scroll').length > 0 ) {
-		$('.sidebar-scroll').slimScroll({
-			height: '95%',
-			wheelStep: 2,
-		});
-	}
-
 
 	/*-----------------------------------/
 	/*	PANEL FUNCTIONS
@@ -123,84 +82,6 @@ $(document).ready(function() {
 		$('#panel-scrolling-demo .panel-body').slimScroll({
 			height: '175px',
 			wheelStep: 2,
-		});
-	}
-
-	/*-----------------------------------/
-	/*	TODO LIST
-	/*----------------------------------*/
-
-	$('.todo-list input').change( function() {
-		if( $(this).prop('checked') ) {
-			$(this).parents('li').addClass('completed');
-		}else {
-			$(this).parents('li').removeClass('completed');
-		}
-	});
-
-
-	/*-----------------------------------/
-	/* TOASTR NOTIFICATION
-	/*----------------------------------*/
-
-	if($('#toastr-demo').length > 0) {
-		toastr.options.timeOut = "false";
-		toastr.options.closeButton = true;
-		toastr['info']('Hi there, this is notification demo with HTML support. So, you can add HTML elements like <a href="#">this link</a>');
-
-		$('.btn-toastr').on('click', function() {
-			$context = $(this).data('context');
-			$message = $(this).data('message');
-			$position = $(this).data('position');
-
-			if($context == '') {
-				$context = 'info';
-			}
-
-			if($position == '') {
-				$positionClass = 'toast-left-top';
-			} else {
-				$positionClass = 'toast-' + $position;
-			}
-
-			toastr.remove();
-			toastr[$context]($message, '' , { positionClass: $positionClass });
-		});
-
-		$('#toastr-callback1').on('click', function() {
-			$message = $(this).data('message');
-
-			toastr.options = {
-				"timeOut": "300",
-				"onShown": function() { alert('onShown callback'); },
-				"onHidden": function() { alert('onHidden callback'); }
-			}
-
-			toastr['info']($message);
-		});
-
-		$('#toastr-callback2').on('click', function() {
-			$message = $(this).data('message');
-
-			toastr.options = {
-				"timeOut": "10000",
-				"onclick": function() { alert('onclick callback'); },
-			}
-
-			toastr['info']($message);
-
-		});
-
-		$('#toastr-callback3').on('click', function() {
-			$message = $(this).data('message');
-
-			toastr.options = {
-				"timeOut": "10000",
-				"closeButton": true,
-				"onCloseClick": function() { alert('onCloseClick callback'); }
-			}
-
-			toastr['info']($message);
 		});
 	}
 });

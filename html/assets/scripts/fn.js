@@ -18,15 +18,3 @@ function fn_api(data, success) {
 	data.token = fn_get_token();
 	fn_public_api(data, success);
 }
-
-function fn_remove_token() {
-	fn_set_token(null);
-}
-
-function fn_set_token(token) {
-	$.cookie("token", token, { "expires": 30, "path": "/" });
-}
-
-function fn_get_token() {
-	return $.cookie("token");
-}
