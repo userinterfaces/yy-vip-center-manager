@@ -1,4 +1,4 @@
-class GoodsCategory_Main_Panel extends React.Component {
+class Goods_Main_Panel extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -12,29 +12,29 @@ class GoodsCategory_Main_Panel extends React.Component {
 		this.reload();
 	}
 
-	handleClickEdit(category) {
+	handleClickEdit(goods) {
 		fn_api({
-			"apiName": "GoodsCategory_QueryDetail_Api",
-			"categoryId": category.id
+			"apiName": "Goods_QueryDetail_Api",
+			"goodsId": goods.id
 		}, function(resp){
-			goodsCategory_Edit_Modal.show({id:category.id, data:resp.data});
+			goods_Edit_Modal.show({id:goods.id, data:resp.data});
 		});
 	}
 
-	handleClickDelete(category) {
+	handleClickDelete(goods) {
 		var panel = this;
 		swal({
-			title: "确定删除吗？",
+			title: "确定下架吗？",
 			icon: "warning",
 			buttons: ["取消", "确定"],
 			dangerMode: true
 		}).then((willDelete) => {
 			if (willDelete) {
 				fn_api({
-					"apiName": "GoodsCategory_Delete_Api",
-					"categoryId": category.id
+					"apiName": "Goods_SoldOut_Api",
+					"goodsId": goods.id
 				}, function(resp){
-					swal("删除成功！", {icon: "success", buttons: "确定"});
+					swal("下架成功！", {icon: "success", buttons: "确定"});
 					panel.reload();
 				});
 			}
@@ -42,13 +42,15 @@ class GoodsCategory_Main_Panel extends React.Component {
 	}
 
 	handleClickAdd() {
-		goodsCategory_Add_Modal.show();
+		goods_Add_Modal.show();
 	}
 
 	reload() {
 		var panel = this;
 		fn_api({
-			"apiName": "GoodsCategory_QueryAll_Api"
+			"apiName": "Goods_QueryList_Api",
+			"pageIndex": 0,
+			"pageSize": 15
 		}, function(resp){
 			panel.setState({data: resp.data});
 		});
@@ -60,7 +62,7 @@ class GoodsCategory_Main_Panel extends React.Component {
 				<div className="main-content">
 					<div className="container-fluid">
 						<h3 className="page-title">
-							商品分类
+							商品库
 							<div className="pull-right">
 								<button className="btn btn-danger btn-sm" onClick={this.handleClickAdd}><i className="fa fa-plus" aria-hidden="true"></i> 添加</button>
 							</div>
@@ -87,7 +89,7 @@ class GoodsCategory_Main_Panel extends React.Component {
 													<td>
 														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 编辑</button>
 														&nbsp;
-														<button className="btn btn-default btn-sm" onClick={e => this.handleClickDelete(x)}><i className="fa fa-times" aria-hidden="true"></i> 删除</button>
+														<button className="btn btn-default btn-sm" onClick={e => this.handleClickDelete(x)}><i className="fa fa-times" aria-hidden="true"></i> 下架</button>
 													</td>
 												</tr>)}
 											</tbody>
