@@ -62,7 +62,7 @@ class GoodsCategory_Add_Modal extends React.Component {
 									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.name} onChange={e => this.handleChange(e, "name")} /></div>
 								</div>
 								<div className="form-group">
-									<label className="col-sm-3 control-label">排序号<small>（小的在前）</small></label>
+									<label className="col-sm-3 control-label">排序号<small>(小的在前)</small></label>
 									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.reorder} onChange={e => this.handleChange(e, "reorder")} /></div>
 								</div>
 								<div className="form-group">

@@ -75,7 +75,7 @@ class GoodsCategory_Main_Panel extends React.Component {
 										<table className="table table-striped table-hover">
 											<thead>
 												<tr>
-													<th>排序号<small>（小的在前）</small></th>
+													<th>排序号</th>
 													<th>名称</th>
 													<th>操作</th>
 												</tr>

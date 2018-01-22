@@ -77,15 +77,31 @@ class Goods_Main_Panel extends React.Component {
 										<table className="table table-striped table-hover">
 											<thead>
 												<tr>
-													<th>排序号<small>（小的在前）</small></th>
-													<th>名称</th>
+													<th>排序号</th>
+													<th>图片</th>
+													<th>商品名称</th>
+													<th>原价<small>(元)</small></th>
+													<th>一级<small>(元)</small></th>
+													<th>二级<small>(元)</small></th>
+													<th>三级<small>(元)</small></th>
+													<th>库存<small>(件)</small></th>
+													<th>上架时间</th>
 													<th>操作</th>
 												</tr>
 											</thead>
 											<tbody>
 												{this.state.data.map((x) => <tr>
 													<td>{x.reorder}</td>
+													<td>
+														<img height="60px" src={JSON.parse(x.pictureUrls)[0]}/>
+													</td>
 													<td>{x.name}</td>
+													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.price)}</td>
+													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.priceLevel1)}</td>
+													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.priceLevel2)}</td>
+													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.priceLevel3)}</td>
+													<td>{x.stock}</td>
+													<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 													<td>
 														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 编辑</button>
 														&nbsp;
