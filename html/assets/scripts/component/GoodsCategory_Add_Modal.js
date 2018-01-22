@@ -3,6 +3,7 @@ class GoodsCategory_Add_Modal extends React.Component {
 		super(props);
 		this.state = {
 			name: null,
+			desc: null,
 			reorder: null
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -26,6 +27,7 @@ class GoodsCategory_Add_Modal extends React.Component {
 		fn_api({
 			"apiName": "GoodsCategory_Add_Api",
 			"name": this.state.name,
+			"desc": this.state.desc,
 			"reorder": this.state.reorder
 		}, function(resp){
 			toastr.info("添加成功");
@@ -42,6 +44,7 @@ class GoodsCategory_Add_Modal extends React.Component {
 		$("#goodsCategory_Add_Modal").modal("hide");
 		this.setState({
 			name: "",
+			desc: "",
 			reorder: ""
 		});
 	}
@@ -60,6 +63,10 @@ class GoodsCategory_Add_Modal extends React.Component {
 								<div className="form-group">
 									<label className="col-sm-3 control-label">名字</label>
 									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.name} onChange={e => this.handleChange(e, "name")} /></div>
+								</div>
+								<div className="form-group">
+									<label className="col-sm-3 control-label">描述</label>
+									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.desc} onChange={e => this.handleChange(e, "desc")} /></div>
 								</div>
 								<div className="form-group">
 									<label className="col-sm-3 control-label">排序号<small>(小的在前)</small></label>

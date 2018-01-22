@@ -5,6 +5,7 @@ class GoodsCategory_Edit_Modal extends React.Component {
 			id: null,
 			data: {
 				name: null,
+				desc: null,
 				reorder: null
 			}
 		};
@@ -30,6 +31,7 @@ class GoodsCategory_Edit_Modal extends React.Component {
 			"apiName": "GoodsCategory_Update_Api",
 			"categoryId": this.state.id,
 			"name": this.state.data.name,
+			"desc": this.state.data.desc,
 			"reorder": this.state.data.reorder
 		}, function(resp){
 			toastr.info("修改成功");
@@ -61,6 +63,10 @@ class GoodsCategory_Edit_Modal extends React.Component {
 								<div className="form-group">
 									<label className="col-sm-3 control-label">名字</label>
 									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.data.name} onChange={e => this.handleChange(e, "name")} /></div>
+								</div>
+								<div className="form-group">
+									<label className="col-sm-3 control-label">描述</label>
+									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.data.desc} onChange={e => this.handleChange(e, "desc")} /></div>
 								</div>
 								<div className="form-group">
 									<label className="col-sm-3 control-label">排序号<small>(小的在前)</small></label>

@@ -11,6 +11,10 @@ class System_SidebarNav extends React.Component {
 				name: "Goods_Main_Panel",
 				title: "商品库",
 				icon: "lnr lnr-dice"
+			}, {
+				name: "User_Main_Panel",
+				title: "用户管理",
+				icon: "lnr lnr-dice"
 			}]
 		};
 		this.handleClick = this.handleClick.bind(this);

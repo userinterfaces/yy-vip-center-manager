@@ -77,6 +77,7 @@ class GoodsCategory_Main_Panel extends React.Component {
 												<tr>
 													<th>排序号</th>
 													<th>名称</th>
+													<th>描述</th>
 													<th>操作</th>
 												</tr>
 											</thead>
@@ -84,6 +85,7 @@ class GoodsCategory_Main_Panel extends React.Component {
 												{this.state.data.map((x) => <tr>
 													<td>{x.reorder}</td>
 													<td>{x.name}</td>
+													<td>{x.desc}</td>
 													<td>
 														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 编辑</button>
 														&nbsp;
