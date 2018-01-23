@@ -2,10 +2,20 @@ class Goods_Main_Panel extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: []
+			data: [],
+			pager: {
+				isFirstPage: null,
+				isLastPage: null,
+				pageIndex: null,
+				pageSize: null,
+				totalPages: null,
+				totalRecords: null
+			},
+			neighborPageIndexs: []
 		};
 		this.handleClickEdit = this.handleClickEdit.bind(this);
 		this.reload = this.reload.bind(this);
+		this.handleClickPageIndex = this.handleClickPageIndex.bind(this);
 	}
 
 	componentDidMount() {
@@ -45,15 +55,35 @@ class Goods_Main_Panel extends React.Component {
 		goods_Add_Modal.show();
 	}
 
-	reload() {
+	reload(pageIndex, pageSize) {
+		if (pageIndex == null) {
+			pageIndex = 0;
+		}
+		if (pageSize == null) {
+			pageSize = 15;
+		}
 		var panel = this;
 		fn_api({
 			"apiName": "Goods_QueryList_Api",
-			"pageIndex": 0,
-			"pageSize": 15
+			"pageIndex": pageIndex,
+			"pageSize": pageSize
 		}, function(resp){
-			panel.setState({data: resp.data});
+			panel.setState({data: resp.data, pager: resp.pager, neighborPageIndexs: fn_getNeighborPageIndexs(resp.pager, 5)});
 		});
+	}
+
+	handleClickPageIndex(pageIndex) {
+		if (pageIndex == "first" && this.state.pager.isFirstPage == 0) {
+			this.reload(0, 15);
+		} else if (pageIndex == "last" && this.state.pager.isLastPage == 0) {
+			this.reload(this.state.pager.totalPages - 1, 15);
+		} else if (pageIndex == "previous" && this.state.pager.isFirstPage == 0) {
+			this.reload(this.state.pager.pageIndex - 1, 15);
+		} else if (pageIndex == "next" && this.state.pager.isLastPage == 0) {
+			this.reload(this.state.pager.pageIndex + 1, 15);
+		} else if (typeof(pageIndex) == "number") {
+			this.reload(pageIndex, 15);
+		}
 	}
 
 	render() {
@@ -110,6 +140,26 @@ class Goods_Main_Panel extends React.Component {
 												</tr>)}
 											</tbody>
 										</table>
+										<div className="row">
+											<div className="col-md-12">
+												<span className="pull-right">
+													<ul className="pagination">
+														<li className={this.state.pager.isFirstPage == 1 ? "disabled" : ""} onClick={e => this.handleClickPageIndex("first")}><a href="#">首页</a></li>
+														<li className={this.state.pager.isFirstPage == 1 ? "disabled" : ""} onClick={e => this.handleClickPageIndex("previous")}><a href="#">上一页</a></li>
+														{this.state.neighborPageIndexs.map(x => <li className={this.state.pager.pageIndex == x ? "active" : ""} onClick={e => this.handleClickPageIndex(x)}>
+															<a href="#">{x+1}</a>
+														</li>)}
+														<li className={this.state.pager.isLastPage == 1 ? "disabled" : ""} onClick={e => this.handleClickPageIndex("next")}><a href="#">下一页</a></li>
+														<li className={this.state.pager.isLastPage == 1 ? "disabled" : ""} onClick={e => this.handleClickPageIndex("last")}><a href="#">末页</a></li>
+													</ul>
+												</span>
+												<span className="pull-right">
+													<p style={{paddingTop: "28px", paddingBottom: "21px", paddingRight: "25px"}}>
+														<small>当前第{this.state.pager.pageIndex+1}/{this.state.pager.totalPages}页，共{this.state.pager.totalRecords}条数据</small>
+													</p>
+												</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>

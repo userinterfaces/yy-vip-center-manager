@@ -80,3 +80,30 @@ function fn_ajax_upload_file(files, success) {
 		toastr.error("文件上传失败");
 	});
 }
+
+function fn_getNeighborPageIndexs(pager, max) {
+	var left = pager.pageIndex - 0;
+	var maxLeft = (max - 1) / 2;
+	if (left > maxLeft) {
+		left = maxLeft;
+	}
+	var right = max - left - 1;
+	var maxRight = pager.totalPages - 1 - pager.pageIndex;
+	if (right > maxRight) {
+		right = maxRight;
+	}
+	var paddingLeft = max - left - right - 1;
+	var maxPaddingLeft = pager.pageIndex - left;
+	if (paddingLeft > maxPaddingLeft) {
+		paddingLeft = maxPaddingLeft;
+	}
+	var neighborPageIndexs = new Array();
+	for (var i = left+paddingLeft; i >= 1; i--) {
+		neighborPageIndexs.push(pager.pageIndex - i);
+	}
+	neighborPageIndexs.push(pager.pageIndex);
+	for (var i = 1; i <= right; i++) {
+		neighborPageIndexs.push(pager.pageIndex + i);
+	}
+	return neighborPageIndexs;
+}
