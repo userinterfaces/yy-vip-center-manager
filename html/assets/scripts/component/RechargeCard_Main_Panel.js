@@ -55,10 +55,6 @@ class RechargeCard_Main_Panel extends React.Component {
 		}
 	}
 
-	getReadableStatus(rechargeCard) {
-		return rechargeCard.dtUse > 0 ? "已使用" : "未使用";
-	}
-
 	render() {
 		return (
 			<div className="main">
@@ -91,9 +87,16 @@ class RechargeCard_Main_Panel extends React.Component {
 												{this.state.data.map((x) => <tr>
 													<td>{x.rawPasswordSeriesCode}</td>
 													<td>{x.amount}</td>
-													<td>{this.getReadableStatus(x)}</td>
+													<td>
+														{x.dtUse > 0 &&
+															<span className="label label-default">已使用</span>
+														}
+														{x.dtUse == 0 &&
+															<span className="label label-success">未使用</span>
+														}
+													</td>
 													<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
-													<td>{fn_format_date(new Date(x.dtUse), "yyyy-MM-dd hh:mm:ss")}</td>
+													<td>{x.dtUse == 0 ? "-" : fn_format_date(new Date(x.dtUse), "yyyy-MM-dd hh:mm:ss")}</td>
 												</tr>)}
 											</tbody>
 										</table>
