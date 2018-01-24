@@ -19,6 +19,10 @@ class System_SidebarNav extends React.Component {
 				name: "RechargeCard_Main_Panel",
 				title: "充值卡管理",
 				icon: "lnr lnr-dice"
+			}, {
+				name: "MixOrder_Main_Panel",
+				title: "订单管理",
+				icon: "lnr lnr-dice"
 			}]
 		};
 		this.handleClick = this.handleClick.bind(this);
