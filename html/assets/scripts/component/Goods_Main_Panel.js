@@ -115,6 +115,7 @@ class Goods_Main_Panel extends React.Component {
 													<th>二级<small>(元)</small></th>
 													<th>三级<small>(元)</small></th>
 													<th>库存<small>(件)</small></th>
+													<th>备注模板</th>
 													<th>上架时间</th>
 													<th>操作</th>
 												</tr>
@@ -131,6 +132,12 @@ class Goods_Main_Panel extends React.Component {
 													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.priceLevel2)}</td>
 													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.priceLevel3)}</td>
 													<td>{x.stock}</td>
+													<td>
+														{x.commentTemplate == 0 && <p>-</p>}
+														{x.commentTemplate == 1 && <span className="label label-info">第一套</span>}
+														{x.commentTemplate == 2 && <span className="label label-info">第二套</span>}
+														{x.commentTemplate == 3 && <span className="label label-info">第三套</span>}
+													</td>
 													<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 													<td>
 														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 编辑</button>

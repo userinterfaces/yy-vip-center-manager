@@ -12,7 +12,8 @@ class Goods_Add_Modal extends React.Component {
 			priceLevel1: null,
 			priceLevel2: null,
 			priceLevel3: null,
-			stock: null
+			stock: null,
+			commentTemplate: 0
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -85,7 +86,8 @@ class Goods_Add_Modal extends React.Component {
 			"priceLevel1": this.state.priceLevel1,
 			"priceLevel2": this.state.priceLevel2,
 			"priceLevel3": this.state.priceLevel3,
-			"stock": this.state.stock
+			"stock": this.state.stock,
+			"commentTemplate": this.state.commentTemplate
 		}, function(resp){
 			toastr.info("添加成功");
 			modal.hide();
@@ -154,6 +156,17 @@ class Goods_Add_Modal extends React.Component {
 								<div className="form-group">
 									<label className="col-sm-3 control-label">库存<small>(件)</small></label>
 									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.stock} onChange={e => this.handleChange(e, "stock")} /></div>
+								</div>
+								<div className="form-group">
+									<label className="col-sm-3 control-label">备注模板</label>
+									<div className="col-sm-7">
+										<select className="form-control" value={this.state.commentTemplate} onChange={e => this.handleChange(e, "commentTemplate")}>
+											<option value="0">基础模板</option>
+											<option value="1">第一套</option>
+											<option value="2">第二套</option>
+											<option value="3">第三套</option>
+										</select>
+									</div>
 								</div>
 								<div className="form-group">
 									<label className="col-sm-3 control-label">排序号<small>(小的在前)</small></label>
