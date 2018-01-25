@@ -63,7 +63,12 @@ class User_Main_Panel extends React.Component {
 													<td>{x.id}</td>
 													<td>{x.nickname}</td>
 													<td>{x.phone}</td>
-													<td>{x.level}</td>
+													<td>
+														{x.level == 0 && "普通用户"}
+														{x.level == 1 && "一级代理"}
+														{x.level == 2 && "二级代理"}
+														{x.level == 3 && "三级代理"}
+													</td>
 													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.walletAmount)}</td>
 													<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 													<td>
