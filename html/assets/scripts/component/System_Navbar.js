@@ -1,8 +1,9 @@
 class System_Navbar extends React.Component {
 
 	handleClickLogout() {
-		fn_api({
-			"apiName": "System_Logout_Api"
+		fn_public_api({
+			"apiName": "System_Logout_Api",
+			"token": fn_get_token()
 		}, function(){
 			fn_remove_token();
 			window.location.href = "login.html";
