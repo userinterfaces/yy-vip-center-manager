@@ -39,7 +39,7 @@ class Goods_Add_Modal extends React.Component {
 			allowedPreviewTypes : [ 'image' ],
 			allowedFileExtensions : [ 'jpg', 'jpeg', 'png', 'gif' ],
 			maxFileSize : 2000,
-			uploadUrl: "http://47.104.17.187:8082/micro-file-server",
+			uploadUrl: "http://182.92.74.206:8082/micro-file-server",
 			uploadAsync: true,
 			maxFileCount: 6
 		});

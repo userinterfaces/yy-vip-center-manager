@@ -1,5 +1,5 @@
 function fn_public_api(data, success) {
-	$.post("http://47.104.17.187:8085/yy-vip-center-manager-api", JSON.stringify(data), function(resp){
+	$.post("http://182.92.74.206:8085/yy-vip-center-manager-api", JSON.stringify(data), function(resp){
 		if (resp.code == 0) {
 			if (typeof success == 'function') {
 				success(resp);
