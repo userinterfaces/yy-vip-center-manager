@@ -91,6 +91,41 @@ class MixOrder_Main_Panel extends React.Component {
 		});
 	}
 
+	buildReadableComment(mixOrder) {
+		var template = mixOrder.goodsCommentTemplate;
+		var comment = JSON.parse(mixOrder.comment);
+		if (template == 0) {
+			return (
+				<div>
+					<span>【留言】：{comment.basic}</span>
+				</div>
+			);
+		} else if (template == 1) {
+			return (
+				<div>
+					<span>【频道号】：{comment.channel}</span>
+					<span>【开播时间段】：{comment.times[0].start+"-"+comment.times[0].end + "; " + comment.times[1].start+"-"+comment.times[1].end+ "; " + comment.times[2].start+"-"+comment.times[2].end}</span>
+					<span>【留言】：{comment.basic}</span>
+				</div>
+			);
+		} else if (template == 2) {
+			return (
+				<div>
+					<span>【频道号】：{comment.channel}</span>
+					<span>【留言】：{comment.basic}</span>
+				</div>
+			);
+		} else if (template == 3) {
+			return (
+				<div>
+					<span>【频道号】：{comment.channel}</span>
+					<span>【是否是卡天频道】：{comment.isKtChannel==1?"是":"否"}</span>
+					<span>【留言】：{comment.basic}</span>
+				</div>
+			);
+		}
+	}
+
 	render() {
 		return (
 			<div className="main">
@@ -138,7 +173,7 @@ class MixOrder_Main_Panel extends React.Component {
 															<td>{x.userNickname}</td>
 															<td>{fn_fen2yuan_in_thousands(x.orderAmount)}</td>
 															<td>{x.goodsName}</td>
-															<td>{x.comment}</td>
+															<td>{this.buildReadableComment(x)}</td>
 															<td>
 																{x.isDispose == 1 &&
 																	<span className="label label-default">已处理</span>
@@ -180,7 +215,7 @@ class MixOrder_Main_Panel extends React.Component {
 															<td>{x.userNickname}</td>
 															<td>{fn_fen2yuan_in_thousands(x.orderAmount)}</td>
 															<td>{x.goodsName}</td>
-															<td>{x.comment}</td>
+															<td>{this.buildReadableComment(x)}</td>
 															<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 															<td>
 																<button className="btn btn-default btn-sm" onClick={e => this.handleClickClose(x)}><i className="fa fa-check" aria-hidden="true"></i> 已处理</button>
@@ -208,7 +243,7 @@ class MixOrder_Main_Panel extends React.Component {
 															<td>{x.userNickname}</td>
 															<td>{fn_fen2yuan_in_thousands(x.orderAmount)}</td>
 															<td>{x.goodsName}</td>
-															<td>{x.comment}</td>
+															<td>{this.buildReadableComment(x)}</td>
 															<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 															<td>{fn_format_date(new Date(x.dtDispose), "yyyy-MM-dd hh:mm:ss")}</td>
 														</tr>)}
