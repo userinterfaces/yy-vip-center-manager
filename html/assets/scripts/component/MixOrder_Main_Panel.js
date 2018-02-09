@@ -16,6 +16,7 @@ class MixOrder_Main_Panel extends React.Component {
 		};
 		this.reload = this.reload.bind(this);
 		this.handleClickClose = this.handleClickClose.bind(this);
+		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClickRefundRequestAgree = this.handleClickRefundRequestAgree.bind(this);
 		this.handleClickRefundRequestReject = this.handleClickRefundRequestReject.bind(this);
 	}
@@ -65,6 +66,16 @@ class MixOrder_Main_Panel extends React.Component {
 		var panel = this;
 		fn_api({
 			"apiName": "MixOrder_Close_Api",
+			"orderId": mixOrder.id
+		}, function(resp){
+			panel.reload();
+		});
+	}
+
+	handleClickOpen(mixOrder) {
+		var panel = this;
+		fn_api({
+			"apiName": "MixOrder_Open_Api",
 			"orderId": mixOrder.id
 		}, function(resp){
 			panel.reload();
@@ -218,7 +229,7 @@ class MixOrder_Main_Panel extends React.Component {
 															<td>{this.buildReadableComment(x)}</td>
 															<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 															<td>
-																<button className="btn btn-default btn-sm" onClick={e => this.handleClickClose(x)}><i className="fa fa-check" aria-hidden="true"></i> 已处理</button>
+																<button className="btn btn-default btn-sm" onClick={e => this.handleClickClose(x)}> 处理</button>
 															</td>
 														</tr>)}
 													</tbody>
@@ -235,6 +246,7 @@ class MixOrder_Main_Panel extends React.Component {
 															<th>备注</th>
 															<th>下单时间</th>
 															<th>处理时间</th>
+															<th>操作</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -246,6 +258,9 @@ class MixOrder_Main_Panel extends React.Component {
 															<td>{this.buildReadableComment(x)}</td>
 															<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 															<td>{fn_format_date(new Date(x.dtDispose), "yyyy-MM-dd hh:mm:ss")}</td>
+															<td>
+																<button className="btn btn-default btn-sm" onClick={e => this.handleClickOpen(x)}> 标记为未处理</button>
+															</td>
 														</tr>)}
 													</tbody>
 												</table>

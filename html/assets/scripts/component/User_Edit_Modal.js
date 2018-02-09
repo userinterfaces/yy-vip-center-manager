@@ -13,7 +13,7 @@ class User_Edit_Modal extends React.Component {
 
 	componentDidMount() {
 		$('#user_Edit_Modal').on('shown.bs.modal', function(e){
-			$("#user_Edit_Modal input")[0].focus();
+			$("#user_Edit_Modal select")[0].focus();
 		});
 	}
 
@@ -57,7 +57,7 @@ class User_Edit_Modal extends React.Component {
 						<div className="modal-body">
 							<form className="form-horizontal" role="form">
 								<div className="form-group">
-									<label className="col-sm-3 control-label">商品分类</label>
+									<label className="col-sm-3 control-label">等级</label>
 									<div className="col-sm-7">
 										<select className="form-control" value={this.state.data.level} onChange={e => this.handleChange(e, "level")}>
 											<option value="0">普通用户</option>
