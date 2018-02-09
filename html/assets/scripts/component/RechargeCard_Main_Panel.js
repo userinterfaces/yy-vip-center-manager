@@ -14,10 +14,19 @@ class RechargeCard_Main_Panel extends React.Component {
 			neighborPageIndexs: []
 		};
 		this.reload = this.reload.bind(this);
+		this.handleClickDelete = this.handleClickDelete.bind(this);
 	}
 
 	componentDidMount() {
 		this.reload();
+		var clipboard = new Clipboard('.btn-copy');
+		clipboard.on('success', function(e) {
+			toastr.info("已复制！");
+			e.clearSelection();
+		});
+		clipboard.on('error', function(e) {
+			toastr.error("无法复制！");
+		});
 	}
 
 	handleClickAdd() {
@@ -55,6 +64,23 @@ class RechargeCard_Main_Panel extends React.Component {
 		}
 	}
 
+	handleClickDelete(rechargeCard) {
+		var panel = this;
+		fn_api({
+			"apiName": "RechargeCard_Delete_Api",
+			"rechargeCardId": rechargeCard.id
+		}, function(resp){
+			panel.reload();
+		});
+	}
+
+	getPasswordSeriesCode(rechargeCard) {
+		var rawPasswordSeriesCode = rechargeCard.rawPasswordSeriesCode;
+		var code = rawPasswordSeriesCode.substring(0, rawPasswordSeriesCode.indexOf("@"));
+		var amount = rawPasswordSeriesCode.substring(rawPasswordSeriesCode.indexOf("@"));
+		return code.substring(0, 5) + "**********" + code.substring(code.length - 5) + amount;
+	}
+
 	render() {
 		return (
 			<div className="main">
@@ -81,11 +107,12 @@ class RechargeCard_Main_Panel extends React.Component {
 													<th>状态</th>
 													<th>入库时间</th>
 													<th>使用时间</th>
+													<th>操作</th>
 												</tr>
 											</thead>
 											<tbody>
 												{this.state.data.map((x) => <tr>
-													<td>{x.rawPasswordSeriesCode}</td>
+													<td>{this.getPasswordSeriesCode(x)}</td>
 													<td>{x.amount}</td>
 													<td>
 														{x.dtUse > 0 &&
@@ -97,6 +124,13 @@ class RechargeCard_Main_Panel extends React.Component {
 													</td>
 													<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 													<td>{x.dtUse == 0 ? "-" : fn_format_date(new Date(x.dtUse), "yyyy-MM-dd hh:mm:ss")}</td>
+													<td>
+														<button className="btn btn-default btn-sm btn-copy" data-clipboard-text={x.rawPasswordSeriesCode}>
+															<img width="14px" src="assets/img/clippy.svg" alt="Copy to clipboard" />
+														</button>
+														&nbsp;&nbsp;
+														<button className="btn btn-default btn-sm" onClick={e => this.handleClickDelete(x)}> 删除</button>
+													</td>
 												</tr>)}
 											</tbody>
 										</table>
