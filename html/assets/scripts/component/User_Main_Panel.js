@@ -54,6 +54,7 @@ class User_Main_Panel extends React.Component {
 													<th>手机号</th>
 													<th>等级</th>
 													<th>余额<small>(元)</small></th>
+													<th>是否禁用</th>
 													<th>注册时间</th>
 													<th>操作</th>
 												</tr>
@@ -70,9 +71,17 @@ class User_Main_Panel extends React.Component {
 														{x.level == 3 && "三级代理"}
 													</td>
 													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.walletAmount)}</td>
+													<td>
+														{x.isDisable == 0 &&
+															<span className="label label-success">未禁用</span>
+														}
+														{x.isDisable == 1 &&
+															<span className="label label-default">已禁用</span>
+														}
+													</td>
 													<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 													<td>
-														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 提权</button>
+														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 编辑</button>
 													</td>
 												</tr>)}
 											</tbody>

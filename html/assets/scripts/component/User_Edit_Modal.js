@@ -4,7 +4,8 @@ class User_Edit_Modal extends React.Component {
 		this.state = {
 			id: null,
 			data: {
-				level: null
+				level: null,
+				isDisable: null
 			}
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -28,7 +29,8 @@ class User_Edit_Modal extends React.Component {
 		fn_api({
 			"apiName": "User_Update_Api",
 			"userId": this.state.id,
-			"level": this.state.data.level
+			"level": this.state.data.level,
+			"isDisable": this.state.data.isDisable
 		}, function(resp){
 			toastr.info("修改成功");
 			modal.hide();
@@ -64,6 +66,15 @@ class User_Edit_Modal extends React.Component {
 											<option value="1">一级代理</option>
 											<option value="2">二级代理</option>
 											<option value="3">三级代理</option>
+										</select>
+									</div>
+								</div>
+								<div className="form-group">
+									<label className="col-sm-3 control-label">是否禁用</label>
+									<div className="col-sm-7">
+										<select className="form-control" value={this.state.data.isDisable} onChange={e => this.handleChange(e, "isDisable")}>
+											<option value="0">启用</option>
+											<option value="1">禁用</option>
 										</select>
 									</div>
 								</div>
