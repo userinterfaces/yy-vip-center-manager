@@ -56,51 +56,51 @@ class GoodsCategory_Main_Panel extends React.Component {
 
 	render() {
 		return (
-			<div className="main">
-				<div className="main-content">
-					<div className="container-fluid">
-						<h3 className="page-title">
-							商品分类
-							<div className="pull-right">
-								<button className="btn btn-danger btn-sm" onClick={this.handleClickAdd}><i className="fa fa-plus" aria-hidden="true"></i> 添加</button>
-							</div>
-						</h3>
-						<div className="row">
-							<div className="col-md-12">
-								<div className="panel">
-									<div className="panel-heading">
-										<h3 className="panel-title">Table</h3>
-									</div>
-									<div className="panel-body">
-										<table className="table table-striped table-hover">
-											<thead>
-												<tr>
-													<th>排序号</th>
-													<th>名称</th>
-													<th>描述</th>
-													<th>操作</th>
-												</tr>
-											</thead>
-											<tbody>
-												{this.state.data.map((x) => <tr>
-													<td>{x.reorder}</td>
-													<td>{x.name}</td>
-													<td>{x.desc}</td>
-													<td>
-														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 编辑</button>
-														&nbsp;
-														<button className="btn btn-default btn-sm" onClick={e => this.handleClickDelete(x)}><i className="fa fa-times" aria-hidden="true"></i> 删除</button>
-													</td>
-												</tr>)}
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			React.createElement("div", {className: "main"}, 
+				React.createElement("div", {className: "main-content"}, 
+					React.createElement("div", {className: "container-fluid"}, 
+						React.createElement("h3", {className: "page-title"}, 
+							"商品分类", 
+							React.createElement("div", {className: "pull-right"}, 
+								React.createElement("button", {className: "btn btn-danger btn-sm", onClick: this.handleClickAdd}, React.createElement("i", {className: "fa fa-plus", "aria-hidden": "true"}), " 添加")
+							)
+						), 
+						React.createElement("div", {className: "row"}, 
+							React.createElement("div", {className: "col-md-12"}, 
+								React.createElement("div", {className: "panel"}, 
+									React.createElement("div", {className: "panel-heading"}, 
+										React.createElement("h3", {className: "panel-title"}, "Table")
+									), 
+									React.createElement("div", {className: "panel-body"}, 
+										React.createElement("table", {className: "table table-striped table-hover"}, 
+											React.createElement("thead", null, 
+												React.createElement("tr", null, 
+													React.createElement("th", null, "排序号"), 
+													React.createElement("th", null, "名称"), 
+													React.createElement("th", null, "描述"), 
+													React.createElement("th", null, "操作")
+												)
+											), 
+											React.createElement("tbody", null, 
+												this.state.data.map((x) => React.createElement("tr", null, 
+													React.createElement("td", null, x.reorder), 
+													React.createElement("td", null, x.name), 
+													React.createElement("td", null, x.desc), 
+													React.createElement("td", null, 
+														React.createElement("button", {className: "btn btn-default btn-sm", onClick: e => this.handleClickEdit(x)}, React.createElement("i", {className: "fa fa-pencil", "aria-hidden": "true"}), " 编辑"), 
+														" ", 
+														React.createElement("button", {className: "btn btn-default btn-sm", onClick: e => this.handleClickDelete(x)}, React.createElement("i", {className: "fa fa-times", "aria-hidden": "true"}), " 删除")
+													)
+												))
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
 		);
 	}
 }

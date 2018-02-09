@@ -49,46 +49,46 @@ class User_Edit_Modal extends React.Component {
 
 	render() {
 		return (
-			<div className="modal fade" id="user_Edit_Modal" tabindex="-1" role="dialog" aria-hidden="true">
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-header">
-							<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4>编辑用户</h4>
-						</div>
-						<div className="modal-body">
-							<form className="form-horizontal" role="form">
-								<div className="form-group">
-									<label className="col-sm-3 control-label">等级</label>
-									<div className="col-sm-7">
-										<select className="form-control" value={this.state.data.level} onChange={e => this.handleChange(e, "level")}>
-											<option value="0">普通用户</option>
-											<option value="1">一级代理</option>
-											<option value="2">二级代理</option>
-											<option value="3">三级代理</option>
-										</select>
-									</div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">是否禁用</label>
-									<div className="col-sm-7">
-										<select className="form-control" value={this.state.data.isDisable} onChange={e => this.handleChange(e, "isDisable")}>
-											<option value="0">启用</option>
-											<option value="1">禁用</option>
-										</select>
-									</div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label"></label>
-									<div className="col-sm-7"><a href="#" className="btn btn-danger" role="button" onClick={this.handleSubmit}>修改</a></div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+			React.createElement("div", {className: "modal fade", id: "user_Edit_Modal", tabindex: "-1", role: "dialog", "aria-hidden": "true"}, 
+				React.createElement("div", {className: "modal-dialog"}, 
+					React.createElement("div", {className: "modal-content"}, 
+						React.createElement("div", {className: "modal-header"}, 
+							React.createElement("button", {type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true"}, "×"), 
+							React.createElement("h4", null, "编辑用户")
+						), 
+						React.createElement("div", {className: "modal-body"}, 
+							React.createElement("form", {className: "form-horizontal", role: "form"}, 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "等级"), 
+									React.createElement("div", {className: "col-sm-7"}, 
+										React.createElement("select", {className: "form-control", value: this.state.data.level, onChange: e => this.handleChange(e, "level")}, 
+											React.createElement("option", {value: "0"}, "普通用户"), 
+											React.createElement("option", {value: "1"}, "一级代理"), 
+											React.createElement("option", {value: "2"}, "二级代理"), 
+											React.createElement("option", {value: "3"}, "三级代理")
+										)
+									)
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "是否禁用"), 
+									React.createElement("div", {className: "col-sm-7"}, 
+										React.createElement("select", {className: "form-control", value: this.state.data.isDisable, onChange: e => this.handleChange(e, "isDisable")}, 
+											React.createElement("option", {value: "0"}, "启用"), 
+											React.createElement("option", {value: "1"}, "禁用")
+										)
+									)
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("a", {href: "#", className: "btn btn-danger", role: "button", onClick: this.handleSubmit}, "修改"))
+								)
+							)
+						)
+					)
+				)
+			)
 		);
 	}
 }
 
-var user_Edit_Modal = ReactDOM.render(<User_Edit_Modal />, $("<div></div>").appendTo(document.body)[0]);
+var user_Edit_Modal = ReactDOM.render(React.createElement(User_Edit_Modal, null), $("<div></div>").appendTo(document.body)[0]);

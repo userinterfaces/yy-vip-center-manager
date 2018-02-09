@@ -88,92 +88,92 @@ class Goods_Main_Panel extends React.Component {
 
 	render() {
 		return (
-			<div className="main">
-				<div className="main-content">
-					<div className="container-fluid">
-						<h3 className="page-title">
-							商品库
-							<div className="pull-right">
-								<button className="btn btn-danger btn-sm" onClick={this.handleClickAdd}><i className="fa fa-plus" aria-hidden="true"></i> 添加</button>
-							</div>
-						</h3>
-						<div className="row">
-							<div className="col-md-12">
-								<div className="panel">
-									<div className="panel-heading">
-										<h3 className="panel-title">Table</h3>
-									</div>
-									<div className="panel-body">
-										<table className="table table-striped table-hover">
-											<thead>
-												<tr>
-													<th>排序号</th>
-													<th>图片</th>
-													<th>商品名称</th>
-													<th>原价<small>(元)</small></th>
-													<th>一级<small>(元)</small></th>
-													<th>二级<small>(元)</small></th>
-													<th>三级<small>(元)</small></th>
-													<th>库存<small>(件)</small></th>
-													<th>备注模板</th>
-													<th>上架时间</th>
-													<th>操作</th>
-												</tr>
-											</thead>
-											<tbody>
-												{this.state.data.map((x) => <tr>
-													<td>{x.reorder}</td>
-													<td>
-														<img height="60px" src={JSON.parse(x.pictureUrls)[0]}/>
-													</td>
-													<td>{x.name}</td>
-													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.price)}</td>
-													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.priceLevel1)}</td>
-													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.priceLevel2)}</td>
-													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.priceLevel3)}</td>
-													<td>{x.stock}</td>
-													<td>
-														{x.commentTemplate == 0 && <p>-</p>}
-														{x.commentTemplate == 1 && <span className="label label-info">第一套</span>}
-														{x.commentTemplate == 2 && <span className="label label-info">第二套</span>}
-														{x.commentTemplate == 3 && <span className="label label-info">第三套</span>}
-													</td>
-													<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
-													<td>
-														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 编辑</button>
-														&nbsp;
-														<button className="btn btn-default btn-sm" onClick={e => this.handleClickDelete(x)}><i className="fa fa-times" aria-hidden="true"></i> 下架</button>
-													</td>
-												</tr>)}
-											</tbody>
-										</table>
-										<div className="row">
-											<div className="col-md-12">
-												<span className="pull-right">
-													<ul className="pagination">
-														<li className={this.state.pager.isFirstPage == 1 ? "disabled" : ""} onClick={e => this.handleClickPageIndex("first")}><a href="#">首页</a></li>
-														<li className={this.state.pager.isFirstPage == 1 ? "disabled" : ""} onClick={e => this.handleClickPageIndex("previous")}><a href="#">上一页</a></li>
-														{this.state.neighborPageIndexs.map(x => <li className={this.state.pager.pageIndex == x ? "active" : ""} onClick={e => this.handleClickPageIndex(x)}>
-															<a href="#">{x+1}</a>
-														</li>)}
-														<li className={this.state.pager.isLastPage == 1 ? "disabled" : ""} onClick={e => this.handleClickPageIndex("next")}><a href="#">下一页</a></li>
-														<li className={this.state.pager.isLastPage == 1 ? "disabled" : ""} onClick={e => this.handleClickPageIndex("last")}><a href="#">末页</a></li>
-													</ul>
-												</span>
-												<span className="pull-right">
-													<p style={{paddingTop: "28px", paddingBottom: "21px", paddingRight: "25px"}}>
-														<small>当前第{this.state.pager.pageIndex+1}/{this.state.pager.totalPages}页，共{this.state.pager.totalRecords}条数据</small>
-													</p>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			React.createElement("div", {className: "main"}, 
+				React.createElement("div", {className: "main-content"}, 
+					React.createElement("div", {className: "container-fluid"}, 
+						React.createElement("h3", {className: "page-title"}, 
+							"商品库", 
+							React.createElement("div", {className: "pull-right"}, 
+								React.createElement("button", {className: "btn btn-danger btn-sm", onClick: this.handleClickAdd}, React.createElement("i", {className: "fa fa-plus", "aria-hidden": "true"}), " 添加")
+							)
+						), 
+						React.createElement("div", {className: "row"}, 
+							React.createElement("div", {className: "col-md-12"}, 
+								React.createElement("div", {className: "panel"}, 
+									React.createElement("div", {className: "panel-heading"}, 
+										React.createElement("h3", {className: "panel-title"}, "Table")
+									), 
+									React.createElement("div", {className: "panel-body"}, 
+										React.createElement("table", {className: "table table-striped table-hover"}, 
+											React.createElement("thead", null, 
+												React.createElement("tr", null, 
+													React.createElement("th", null, "排序号"), 
+													React.createElement("th", null, "图片"), 
+													React.createElement("th", null, "商品名称"), 
+													React.createElement("th", null, "原价", React.createElement("small", null, "(元)")), 
+													React.createElement("th", null, "一级", React.createElement("small", null, "(元)")), 
+													React.createElement("th", null, "二级", React.createElement("small", null, "(元)")), 
+													React.createElement("th", null, "三级", React.createElement("small", null, "(元)")), 
+													React.createElement("th", null, "库存", React.createElement("small", null, "(件)")), 
+													React.createElement("th", null, "备注模板"), 
+													React.createElement("th", null, "上架时间"), 
+													React.createElement("th", null, "操作")
+												)
+											), 
+											React.createElement("tbody", null, 
+												this.state.data.map((x) => React.createElement("tr", null, 
+													React.createElement("td", null, x.reorder), 
+													React.createElement("td", null, 
+														React.createElement("img", {height: "60px", src: JSON.parse(x.pictureUrls)[0]})
+													), 
+													React.createElement("td", null, x.name), 
+													React.createElement("td", null, React.createElement("i", {className: "fa fa-jpy", "aria-hidden": "true"}), fn_fen2yuan_in_thousands(x.price)), 
+													React.createElement("td", null, React.createElement("i", {className: "fa fa-jpy", "aria-hidden": "true"}), fn_fen2yuan_in_thousands(x.priceLevel1)), 
+													React.createElement("td", null, React.createElement("i", {className: "fa fa-jpy", "aria-hidden": "true"}), fn_fen2yuan_in_thousands(x.priceLevel2)), 
+													React.createElement("td", null, React.createElement("i", {className: "fa fa-jpy", "aria-hidden": "true"}), fn_fen2yuan_in_thousands(x.priceLevel3)), 
+													React.createElement("td", null, x.stock), 
+													React.createElement("td", null, 
+														x.commentTemplate == 0 && React.createElement("p", null, "-"), 
+														x.commentTemplate == 1 && React.createElement("span", {className: "label label-info"}, "第一套"), 
+														x.commentTemplate == 2 && React.createElement("span", {className: "label label-info"}, "第二套"), 
+														x.commentTemplate == 3 && React.createElement("span", {className: "label label-info"}, "第三套")
+													), 
+													React.createElement("td", null, fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")), 
+													React.createElement("td", null, 
+														React.createElement("button", {className: "btn btn-default btn-sm", onClick: e => this.handleClickEdit(x)}, React.createElement("i", {className: "fa fa-pencil", "aria-hidden": "true"}), " 编辑"), 
+														" ", 
+														React.createElement("button", {className: "btn btn-default btn-sm", onClick: e => this.handleClickDelete(x)}, React.createElement("i", {className: "fa fa-times", "aria-hidden": "true"}), " 下架")
+													)
+												))
+											)
+										), 
+										React.createElement("div", {className: "row"}, 
+											React.createElement("div", {className: "col-md-12"}, 
+												React.createElement("span", {className: "pull-right"}, 
+													React.createElement("ul", {className: "pagination"}, 
+														React.createElement("li", {className: this.state.pager.isFirstPage == 1 ? "disabled" : "", onClick: e => this.handleClickPageIndex("first")}, React.createElement("a", {href: "#"}, "首页")), 
+														React.createElement("li", {className: this.state.pager.isFirstPage == 1 ? "disabled" : "", onClick: e => this.handleClickPageIndex("previous")}, React.createElement("a", {href: "#"}, "上一页")), 
+														this.state.neighborPageIndexs.map(x => React.createElement("li", {className: this.state.pager.pageIndex == x ? "active" : "", onClick: e => this.handleClickPageIndex(x)}, 
+															React.createElement("a", {href: "#"}, x+1)
+														)), 
+														React.createElement("li", {className: this.state.pager.isLastPage == 1 ? "disabled" : "", onClick: e => this.handleClickPageIndex("next")}, React.createElement("a", {href: "#"}, "下一页")), 
+														React.createElement("li", {className: this.state.pager.isLastPage == 1 ? "disabled" : "", onClick: e => this.handleClickPageIndex("last")}, React.createElement("a", {href: "#"}, "末页"))
+													)
+												), 
+												React.createElement("span", {className: "pull-right"}, 
+													React.createElement("p", {style: {paddingTop: "28px", paddingBottom: "21px", paddingRight: "25px"}}, 
+														React.createElement("small", null, "当前第", this.state.pager.pageIndex+1, "/", this.state.pager.totalPages, "页，共", this.state.pager.totalRecords, "条数据")
+													)
+												)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
 		);
 	}
 }

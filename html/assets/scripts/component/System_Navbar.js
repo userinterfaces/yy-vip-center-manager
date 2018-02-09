@@ -32,29 +32,29 @@ class System_Navbar extends React.Component {
 
 	render() {
 		return (
-			<nav className="navbar navbar-default navbar-fixed-top">
-				<div className="brand">
-					<a href="index.html"><img src="assets/img/logo-dark.png" alt="Klorofil Logo" className="img-responsive logo" /></a>
-				</div>
-				<div className="container-fluid">
-					<div className="navbar-btn">
-						<button type="button" className="btn-toggle-fullwidth" onClick={this.handleClickToggleFullwidth}><i className="lnr lnr-arrow-left-circle"></i></button>
-					</div>
-					<div id="navbar-menu">
-						<ul className="nav navbar-nav navbar-right">
-							<li className="dropdown">
-								<a href="#" className="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/profle.png" className="img-circle" alt="Avatar" /> <span>欢迎，管理员</span> <i className="icon-submenu lnr lnr-chevron-down"></i></a>
-								<ul className="dropdown-menu">
-									<li data-toggle="modal" data-target="#system_EditMyPassword_Modal"><a href="#"><i className="fa fa-key" aria-hidden="true"></i> <span>修改密码</span></a></li>
-									<li onClick={this.handleClickLogout}><a href="#"><i className="lnr lnr-exit"></i> <span>退出</span></a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+			React.createElement("nav", {className: "navbar navbar-default navbar-fixed-top"}, 
+				React.createElement("div", {className: "brand"}, 
+					React.createElement("a", {href: "index.html"}, React.createElement("img", {src: "assets/img/logo-dark.png", alt: "Klorofil Logo", className: "img-responsive logo"}))
+				), 
+				React.createElement("div", {className: "container-fluid"}, 
+					React.createElement("div", {className: "navbar-btn"}, 
+						React.createElement("button", {type: "button", className: "btn-toggle-fullwidth", onClick: this.handleClickToggleFullwidth}, React.createElement("i", {className: "lnr lnr-arrow-left-circle"}))
+					), 
+					React.createElement("div", {id: "navbar-menu"}, 
+						React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
+							React.createElement("li", {className: "dropdown"}, 
+								React.createElement("a", {href: "#", className: "dropdown-toggle", "data-toggle": "dropdown"}, React.createElement("img", {src: "assets/img/profle.png", className: "img-circle", alt: "Avatar"}), " ", React.createElement("span", null, "欢迎，管理员"), " ", React.createElement("i", {className: "icon-submenu lnr lnr-chevron-down"})), 
+								React.createElement("ul", {className: "dropdown-menu"}, 
+									React.createElement("li", {"data-toggle": "modal", "data-target": "#system_EditMyPassword_Modal"}, React.createElement("a", {href: "#"}, React.createElement("i", {className: "fa fa-key", "aria-hidden": "true"}), " ", React.createElement("span", null, "修改密码"))), 
+									React.createElement("li", {onClick: this.handleClickLogout}, React.createElement("a", {href: "#"}, React.createElement("i", {className: "lnr lnr-exit"}), " ", React.createElement("span", null, "退出")))
+								)
+							)
+						)
+					)
+				)
+			)
 		);
 	}
 }
 
-var system_Navbar = ReactDOM.render(<System_Navbar />, document.getElementById("system_Navbar_Container"));
+var system_Navbar = ReactDOM.render(React.createElement(System_Navbar, null), document.getElementById("system_Navbar_Container"));

@@ -51,38 +51,38 @@ class GoodsCategory_Add_Modal extends React.Component {
 
 	render() {
 		return (
-			<div className="modal fade" id="goodsCategory_Add_Modal" tabindex="-1" role="dialog" aria-hidden="true">
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-header">
-							<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4>添加商品分类</h4>
-						</div>
-						<div className="modal-body">
-							<form className="form-horizontal" role="form">
-								<div className="form-group">
-									<label className="col-sm-3 control-label">名字</label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.name} onChange={e => this.handleChange(e, "name")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">描述</label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.desc} onChange={e => this.handleChange(e, "desc")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">排序号<small>(小的在前)</small></label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.reorder} onChange={e => this.handleChange(e, "reorder")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label"></label>
-									<div className="col-sm-7"><a href="#" className="btn btn-danger" role="button" onClick={this.handleSubmit}>添加</a></div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+			React.createElement("div", {className: "modal fade", id: "goodsCategory_Add_Modal", tabindex: "-1", role: "dialog", "aria-hidden": "true"}, 
+				React.createElement("div", {className: "modal-dialog"}, 
+					React.createElement("div", {className: "modal-content"}, 
+						React.createElement("div", {className: "modal-header"}, 
+							React.createElement("button", {type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true"}, "×"), 
+							React.createElement("h4", null, "添加商品分类")
+						), 
+						React.createElement("div", {className: "modal-body"}, 
+							React.createElement("form", {className: "form-horizontal", role: "form"}, 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "名字"), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.name, onChange: e => this.handleChange(e, "name")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "描述"), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.desc, onChange: e => this.handleChange(e, "desc")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "排序号", React.createElement("small", null, "(小的在前)")), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.reorder, onChange: e => this.handleChange(e, "reorder")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("a", {href: "#", className: "btn btn-danger", role: "button", onClick: this.handleSubmit}, "添加"))
+								)
+							)
+						)
+					)
+				)
+			)
 		);
 	}
 }
 
-var goodsCategory_Add_Modal = ReactDOM.render(<GoodsCategory_Add_Modal />, $("<div></div>").appendTo(document.body)[0]);
+var goodsCategory_Add_Modal = ReactDOM.render(React.createElement(GoodsCategory_Add_Modal, null), $("<div></div>").appendTo(document.body)[0]);

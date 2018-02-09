@@ -105,84 +105,84 @@ class Goods_Add_Modal extends React.Component {
 
 	render() {
 		return (
-			<div className="modal fade" id="goods_Add_Modal" tabindex="-1" role="dialog" aria-hidden="true">
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-header">
-							<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4>添加商品</h4>
-						</div>
-						<div className="modal-body">
-							<form className="form-horizontal" role="form">
-								<div className="form-group">
-									<label className="col-sm-3 control-label">商品分类</label>
-									<div className="col-sm-7">
-										<select className="form-control" value={this.state.categoryId} onChange={e => this.handleChange(e, "categoryId")}>
-											<option value="">请选择</option>
-											{this.state.categories.map(x => <option value={x.id}>{x.name}</option>)}
-										</select>
-									</div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">选择图片</label>
-									<div className="col-sm-7">
-										<input type="file" multiple/>
-									</div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">名字</label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.name} onChange={e => this.handleChange(e, "name")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">商品描述</label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.desc} onChange={e => this.handleChange(e, "desc")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">价格<small>(分)</small></label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.price} onChange={e => this.handleChange(e, "price")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">一级代理<small>(分)</small></label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.priceLevel1} onChange={e => this.handleChange(e, "priceLevel1")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">二级代理<small>(分)</small></label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.priceLevel2} onChange={e => this.handleChange(e, "priceLevel2")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">三级代理<small>(分)</small></label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.priceLevel3} onChange={e => this.handleChange(e, "priceLevel3")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">库存<small>(件)</small></label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.stock} onChange={e => this.handleChange(e, "stock")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">备注模板</label>
-									<div className="col-sm-7">
-										<select className="form-control" value={this.state.commentTemplate} onChange={e => this.handleChange(e, "commentTemplate")}>
-											<option value="0">基础模板</option>
-											<option value="1">第一套</option>
-											<option value="2">第二套</option>
-											<option value="3">第三套</option>
-										</select>
-									</div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label">排序号<small>(小的在前)</small></label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.reorder} onChange={e => this.handleChange(e, "reorder")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label"></label>
-									<div className="col-sm-7"><a href="#" className="btn btn-danger" role="button" onClick={this.handleSubmit}>添加</a></div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+			React.createElement("div", {className: "modal fade", id: "goods_Add_Modal", tabindex: "-1", role: "dialog", "aria-hidden": "true"}, 
+				React.createElement("div", {className: "modal-dialog"}, 
+					React.createElement("div", {className: "modal-content"}, 
+						React.createElement("div", {className: "modal-header"}, 
+							React.createElement("button", {type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true"}, "×"), 
+							React.createElement("h4", null, "添加商品")
+						), 
+						React.createElement("div", {className: "modal-body"}, 
+							React.createElement("form", {className: "form-horizontal", role: "form"}, 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "商品分类"), 
+									React.createElement("div", {className: "col-sm-7"}, 
+										React.createElement("select", {className: "form-control", value: this.state.categoryId, onChange: e => this.handleChange(e, "categoryId")}, 
+											React.createElement("option", {value: ""}, "请选择"), 
+											this.state.categories.map(x => React.createElement("option", {value: x.id}, x.name))
+										)
+									)
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "选择图片"), 
+									React.createElement("div", {className: "col-sm-7"}, 
+										React.createElement("input", {type: "file", multiple: true})
+									)
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "名字"), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.name, onChange: e => this.handleChange(e, "name")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "商品描述"), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.desc, onChange: e => this.handleChange(e, "desc")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "价格", React.createElement("small", null, "(分)")), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.price, onChange: e => this.handleChange(e, "price")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "一级代理", React.createElement("small", null, "(分)")), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.priceLevel1, onChange: e => this.handleChange(e, "priceLevel1")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "二级代理", React.createElement("small", null, "(分)")), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.priceLevel2, onChange: e => this.handleChange(e, "priceLevel2")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "三级代理", React.createElement("small", null, "(分)")), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.priceLevel3, onChange: e => this.handleChange(e, "priceLevel3")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "库存", React.createElement("small", null, "(件)")), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.stock, onChange: e => this.handleChange(e, "stock")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "备注模板"), 
+									React.createElement("div", {className: "col-sm-7"}, 
+										React.createElement("select", {className: "form-control", value: this.state.commentTemplate, onChange: e => this.handleChange(e, "commentTemplate")}, 
+											React.createElement("option", {value: "0"}, "基础模板"), 
+											React.createElement("option", {value: "1"}, "第一套"), 
+											React.createElement("option", {value: "2"}, "第二套"), 
+											React.createElement("option", {value: "3"}, "第三套")
+										)
+									)
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "排序号", React.createElement("small", null, "(小的在前)")), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.reorder, onChange: e => this.handleChange(e, "reorder")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("a", {href: "#", className: "btn btn-danger", role: "button", onClick: this.handleSubmit}, "添加"))
+								)
+							)
+						)
+					)
+				)
+			)
 		);
 	}
 }
 
-var goods_Add_Modal = ReactDOM.render(<Goods_Add_Modal />, $("<div></div>").appendTo(document.body)[0]);
+var goods_Add_Modal = ReactDOM.render(React.createElement(Goods_Add_Modal, null), $("<div></div>").appendTo(document.body)[0]);

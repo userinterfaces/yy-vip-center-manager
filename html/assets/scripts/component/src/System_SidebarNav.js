@@ -51,19 +51,19 @@ class System_SidebarNav extends React.Component {
 
 	render() {
 		return (
-			React.createElement("div", {id: "sidebar-nav", className: "sidebar"}, 
-				React.createElement("div", {className: "sidebar-scroll"}, 
-					React.createElement("nav", null, 
-						React.createElement("ul", {className: "nav"}, 
-							this.state.data.map(x => React.createElement("li", {onClick: e => this.handleClick(x)}, 
-								React.createElement("a", {href: "#", className: this.state.active == x.name ? "active" : ""}, React.createElement("i", {className: x.icon}), " ", React.createElement("span", null, x.title))
-							))
-						)
-					)
-				)
-			)
+			<div id="sidebar-nav" className="sidebar">
+				<div className="sidebar-scroll">
+					<nav>
+						<ul className="nav">
+							{this.state.data.map(x => <li onClick={e => this.handleClick(x)}>
+								<a href="#" className={this.state.active == x.name ? "active" : ""}><i className={x.icon}></i> <span>{x.title}</span></a>
+							</li>)}
+						</ul>
+					</nav>
+				</div>
+			</div>
 		);
 	}
 }
 
-var system_SidebarNav = ReactDOM.render(React.createElement(System_SidebarNav, null), document.getElementById("system_SidebarNav_Container"));
+var system_SidebarNav = ReactDOM.render(<System_SidebarNav />, document.getElementById("system_SidebarNav_Container"));

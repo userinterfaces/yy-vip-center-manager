@@ -33,66 +33,66 @@ class User_Main_Panel extends React.Component {
 
 	render() {
 		return (
-			<div className="main">
-				<div className="main-content">
-					<div className="container-fluid">
-						<h3 className="page-title">
-							用户管理
-						</h3>
-						<div className="row">
-							<div className="col-md-12">
-								<div className="panel">
-									<div className="panel-heading">
-										<h3 className="panel-title">Table</h3>
-									</div>
-									<div className="panel-body">
-										<table className="table table-striped table-hover">
-											<thead>
-												<tr>
-													<th>用户ID</th>
-													<th>昵称</th>
-													<th>手机号</th>
-													<th>等级</th>
-													<th>余额<small>(元)</small></th>
-													<th>是否禁用</th>
-													<th>注册时间</th>
-													<th>操作</th>
-												</tr>
-											</thead>
-											<tbody>
-												{this.state.data.map((x) => <tr>
-													<td>{x.id}</td>
-													<td>{x.nickname}</td>
-													<td>{x.phone}</td>
-													<td>
-														{x.level == 0 && "普通用户"}
-														{x.level == 1 && "一级代理"}
-														{x.level == 2 && "二级代理"}
-														{x.level == 3 && "三级代理"}
-													</td>
-													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.walletAmount)}</td>
-													<td>
-														{x.isDisable == 0 &&
-															<span className="label label-success">未禁用</span>
-														}
-														{x.isDisable == 1 &&
-															<span className="label label-default">已禁用</span>
-														}
-													</td>
-													<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
-													<td>
-														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 编辑</button>
-													</td>
-												</tr>)}
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			React.createElement("div", {className: "main"}, 
+				React.createElement("div", {className: "main-content"}, 
+					React.createElement("div", {className: "container-fluid"}, 
+						React.createElement("h3", {className: "page-title"}, 
+							"用户管理"
+						), 
+						React.createElement("div", {className: "row"}, 
+							React.createElement("div", {className: "col-md-12"}, 
+								React.createElement("div", {className: "panel"}, 
+									React.createElement("div", {className: "panel-heading"}, 
+										React.createElement("h3", {className: "panel-title"}, "Table")
+									), 
+									React.createElement("div", {className: "panel-body"}, 
+										React.createElement("table", {className: "table table-striped table-hover"}, 
+											React.createElement("thead", null, 
+												React.createElement("tr", null, 
+													React.createElement("th", null, "用户ID"), 
+													React.createElement("th", null, "昵称"), 
+													React.createElement("th", null, "手机号"), 
+													React.createElement("th", null, "等级"), 
+													React.createElement("th", null, "余额", React.createElement("small", null, "(元)")), 
+													React.createElement("th", null, "是否禁用"), 
+													React.createElement("th", null, "注册时间"), 
+													React.createElement("th", null, "操作")
+												)
+											), 
+											React.createElement("tbody", null, 
+												this.state.data.map((x) => React.createElement("tr", null, 
+													React.createElement("td", null, x.id), 
+													React.createElement("td", null, x.nickname), 
+													React.createElement("td", null, x.phone), 
+													React.createElement("td", null, 
+														x.level == 0 && "普通用户", 
+														x.level == 1 && "一级代理", 
+														x.level == 2 && "二级代理", 
+														x.level == 3 && "三级代理"
+													), 
+													React.createElement("td", null, React.createElement("i", {className: "fa fa-jpy", "aria-hidden": "true"}), fn_fen2yuan_in_thousands(x.walletAmount)), 
+													React.createElement("td", null, 
+														x.isDisable == 0 &&
+															React.createElement("span", {className: "label label-success"}, "未禁用"), 
+														
+														x.isDisable == 1 &&
+															React.createElement("span", {className: "label label-default"}, "已禁用")
+														
+													), 
+													React.createElement("td", null, fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")), 
+													React.createElement("td", null, 
+														React.createElement("button", {className: "btn btn-default btn-sm", onClick: e => this.handleClickEdit(x)}, React.createElement("i", {className: "fa fa-pencil", "aria-hidden": "true"}), " 编辑")
+													)
+												))
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
 		);
 	}
 }

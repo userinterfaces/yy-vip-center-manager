@@ -45,30 +45,30 @@ class RechargeCard_Add_Modal extends React.Component {
 
 	render() {
 		return (
-			<div className="modal fade" id="rechargeCard_Add_Modal" tabindex="-1" role="dialog" aria-hidden="true">
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-header">
-							<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4>添加单个充值卡</h4>
-						</div>
-						<div className="modal-body">
-							<form className="form-horizontal" role="form">
-								<div className="form-group">
-									<label className="col-sm-3 control-label">原始密码序列编码串</label>
-									<div className="col-sm-7"><input type="text" className="form-control" value={this.state.rawPasswordSeriesCode} onChange={e => this.handleChange(e, "rawPasswordSeriesCode")} /></div>
-								</div>
-								<div className="form-group">
-									<label className="col-sm-3 control-label"></label>
-									<div className="col-sm-7"><a href="#" className="btn btn-danger" role="button" onClick={this.handleSubmit}>添加</a></div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+			React.createElement("div", {className: "modal fade", id: "rechargeCard_Add_Modal", tabindex: "-1", role: "dialog", "aria-hidden": "true"}, 
+				React.createElement("div", {className: "modal-dialog"}, 
+					React.createElement("div", {className: "modal-content"}, 
+						React.createElement("div", {className: "modal-header"}, 
+							React.createElement("button", {type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true"}, "×"), 
+							React.createElement("h4", null, "添加单个充值卡")
+						), 
+						React.createElement("div", {className: "modal-body"}, 
+							React.createElement("form", {className: "form-horizontal", role: "form"}, 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}, "原始密码序列编码串"), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("input", {type: "text", className: "form-control", value: this.state.rawPasswordSeriesCode, onChange: e => this.handleChange(e, "rawPasswordSeriesCode")}))
+								), 
+								React.createElement("div", {className: "form-group"}, 
+									React.createElement("label", {className: "col-sm-3 control-label"}), 
+									React.createElement("div", {className: "col-sm-7"}, React.createElement("a", {href: "#", className: "btn btn-danger", role: "button", onClick: this.handleSubmit}, "添加"))
+								)
+							)
+						)
+					)
+				)
+			)
 		);
 	}
 }
 
-var rechargeCard_Add_Modal = ReactDOM.render(<RechargeCard_Add_Modal />, $("<div></div>").appendTo(document.body)[0]);
+var rechargeCard_Add_Modal = ReactDOM.render(React.createElement(RechargeCard_Add_Modal, null), $("<div></div>").appendTo(document.body)[0]);
