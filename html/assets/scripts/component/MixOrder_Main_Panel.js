@@ -2,6 +2,7 @@ class MixOrder_Main_Panel extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			categories: [],
 			data: [],
 			pager: {
 				isFirstPage: null,
@@ -12,13 +13,16 @@ class MixOrder_Main_Panel extends React.Component {
 				totalRecords: null
 			},
 			neighborPageIndexs: [],
-			searchStatus: 0
+			searchStatus: 0,
+			searchGoodsCategoryId: ""
 		};
 		this.reload = this.reload.bind(this);
 		this.handleClickClose = this.handleClickClose.bind(this);
 		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClickRefundRequestAgree = this.handleClickRefundRequestAgree.bind(this);
 		this.handleClickRefundRequestReject = this.handleClickRefundRequestReject.bind(this);
+		this.handleChangeSearchGoodsCategoryId = this.handleChangeSearchGoodsCategoryId.bind(this);
+		
 	}
 
 	componentDidMount() {
@@ -28,6 +32,13 @@ class MixOrder_Main_Panel extends React.Component {
 			panel.reload();
 		})
 		this.reload();
+		// 加载商品分类数据
+		var modal = this;
+		fn_api({
+			"apiName": "GoodsCategory_QueryAll_Api"
+		}, function(resp){
+			modal.setState({categories: resp.data});
+		});
 	}
 
 	reload(pageIndex, pageSize) {
@@ -42,7 +53,8 @@ class MixOrder_Main_Panel extends React.Component {
 			"apiName": "MixOrder_QueryList_Api",
 			"pageIndex": pageIndex,
 			"pageSize": pageSize,
-			"searchStatus": this.state.searchStatus
+			"searchStatus": this.state.searchStatus,
+			"searchGoodsCategoryId": this.state.searchGoodsCategoryId
 		}, function(resp){
 			panel.setState({data: resp.data, pager: resp.pager, neighborPageIndexs: fn_getNeighborPageIndexs(resp.pager, 5)});
 		});
@@ -137,6 +149,12 @@ class MixOrder_Main_Panel extends React.Component {
 		}
 	}
 
+	handleChangeSearchGoodsCategoryId(e) {
+		this.setState({searchGoodsCategoryId: e.target.value}, function() {
+			this.reload();
+		});
+	}
+
 	render() {
 		return (
 			<div className="main">
@@ -144,6 +162,12 @@ class MixOrder_Main_Panel extends React.Component {
 					<div className="container-fluid">
 						<h3 className="page-title">
 							订单管理
+							<div className="pull-right">
+								<select className="form-control" style={{minWidth: "140px"}} value={this.state.searchGoodsCategoryId} onChange={e => this.handleChangeSearchGoodsCategoryId(e)}>
+									<option value="">请选择商品分类</option>
+									{this.state.categories.map(x => <option value={x.id}>{x.name}</option>)}
+								</select>
+							</div>
 						</h3>
 						<div className="row">
 							<div className="col-md-12">
