@@ -2,6 +2,7 @@ class Goods_Main_Panel extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			categories: [],
 			data: [],
 			pager: {
 				isFirstPage: null,
@@ -11,7 +12,8 @@ class Goods_Main_Panel extends React.Component {
 				totalPages: null,
 				totalRecords: null
 			},
-			neighborPageIndexs: []
+			neighborPageIndexs: [],
+			searchGoodsCategoryId: ""
 		};
 		this.handleClickEdit = this.handleClickEdit.bind(this);
 		this.reload = this.reload.bind(this);
@@ -20,6 +22,13 @@ class Goods_Main_Panel extends React.Component {
 
 	componentDidMount() {
 		this.reload();
+		// 加载商品分类数据
+		var panel = this;
+		fn_api({
+			"apiName": "GoodsCategory_QueryAll_Api"
+		}, function(resp){
+			panel.setState({categories: resp.data});
+		});
 	}
 
 	handleClickEdit(goods) {
@@ -66,7 +75,8 @@ class Goods_Main_Panel extends React.Component {
 		fn_api({
 			"apiName": "Goods_QueryList_Api",
 			"pageIndex": pageIndex,
-			"pageSize": pageSize
+			"pageSize": pageSize,
+			"searchCategoryId": this.state.searchGoodsCategoryId
 		}, function(resp){
 			panel.setState({data: resp.data, pager: resp.pager, neighborPageIndexs: fn_getNeighborPageIndexs(resp.pager, 5)});
 		});
@@ -86,6 +96,12 @@ class Goods_Main_Panel extends React.Component {
 		}
 	}
 
+	handleChangeSearchGoodsCategoryId(e) {
+		this.setState({searchGoodsCategoryId: e.target.value}, function() {
+			this.reload();
+		});
+	}
+
 	render() {
 		return (
 			React.createElement("div", {className: "main"}, 
@@ -93,8 +109,14 @@ class Goods_Main_Panel extends React.Component {
 					React.createElement("div", {className: "container-fluid"}, 
 						React.createElement("h3", {className: "page-title"}, 
 							"商品库", 
-							React.createElement("div", {className: "pull-right"}, 
+							React.createElement("div", {className: "pull-right", style: {paddingLeft: "20px"}}, 
 								React.createElement("button", {className: "btn btn-danger btn-sm", onClick: this.handleClickAdd}, React.createElement("i", {className: "fa fa-plus", "aria-hidden": "true"}), " 添加")
+							), 
+							React.createElement("div", {className: "pull-right"}, 
+								React.createElement("select", {className: "form-control", style: {minWidth: "140px", height: "30px"}, value: this.state.searchGoodsCategoryId, onChange: e => this.handleChangeSearchGoodsCategoryId(e)}, 
+									React.createElement("option", {value: ""}, "请选择商品分类"), 
+									this.state.categories.map(x => React.createElement("option", {value: x.id}, x.name))
+								)
 							)
 						), 
 						React.createElement("div", {className: "row"}, 
@@ -109,6 +131,7 @@ class Goods_Main_Panel extends React.Component {
 												React.createElement("tr", null, 
 													React.createElement("th", null, "排序号"), 
 													React.createElement("th", null, "图片"), 
+													React.createElement("th", null, "商品分类"), 
 													React.createElement("th", null, "商品名称"), 
 													React.createElement("th", null, "原价", React.createElement("small", null, "(元)")), 
 													React.createElement("th", null, "一级", React.createElement("small", null, "(元)")), 
@@ -126,6 +149,7 @@ class Goods_Main_Panel extends React.Component {
 													React.createElement("td", null, 
 														React.createElement("img", {height: "60px", src: JSON.parse(x.pictureUrls)[0]})
 													), 
+													React.createElement("td", null, x.categoryName), 
 													React.createElement("td", null, x.name), 
 													React.createElement("td", null, React.createElement("i", {className: "fa fa-jpy", "aria-hidden": "true"}), fn_fen2yuan_in_thousands(x.price)), 
 													React.createElement("td", null, React.createElement("i", {className: "fa fa-jpy", "aria-hidden": "true"}), fn_fen2yuan_in_thousands(x.priceLevel1)), 

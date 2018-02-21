@@ -2,6 +2,7 @@ class Goods_Main_Panel extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			categories: [],
 			data: [],
 			pager: {
 				isFirstPage: null,
@@ -11,7 +12,8 @@ class Goods_Main_Panel extends React.Component {
 				totalPages: null,
 				totalRecords: null
 			},
-			neighborPageIndexs: []
+			neighborPageIndexs: [],
+			searchGoodsCategoryId: ""
 		};
 		this.handleClickEdit = this.handleClickEdit.bind(this);
 		this.reload = this.reload.bind(this);
@@ -20,6 +22,13 @@ class Goods_Main_Panel extends React.Component {
 
 	componentDidMount() {
 		this.reload();
+		// 加载商品分类数据
+		var panel = this;
+		fn_api({
+			"apiName": "GoodsCategory_QueryAll_Api"
+		}, function(resp){
+			panel.setState({categories: resp.data});
+		});
 	}
 
 	handleClickEdit(goods) {
@@ -66,7 +75,8 @@ class Goods_Main_Panel extends React.Component {
 		fn_api({
 			"apiName": "Goods_QueryList_Api",
 			"pageIndex": pageIndex,
-			"pageSize": pageSize
+			"pageSize": pageSize,
+			"searchCategoryId": this.state.searchGoodsCategoryId
 		}, function(resp){
 			panel.setState({data: resp.data, pager: resp.pager, neighborPageIndexs: fn_getNeighborPageIndexs(resp.pager, 5)});
 		});
@@ -86,6 +96,12 @@ class Goods_Main_Panel extends React.Component {
 		}
 	}
 
+	handleChangeSearchGoodsCategoryId(e) {
+		this.setState({searchGoodsCategoryId: e.target.value}, function() {
+			this.reload();
+		});
+	}
+
 	render() {
 		return (
 			<div className="main">
@@ -93,8 +109,14 @@ class Goods_Main_Panel extends React.Component {
 					<div className="container-fluid">
 						<h3 className="page-title">
 							商品库
-							<div className="pull-right">
+							<div className="pull-right" style={{paddingLeft: "20px"}}>
 								<button className="btn btn-danger btn-sm" onClick={this.handleClickAdd}><i className="fa fa-plus" aria-hidden="true"></i> 添加</button>
+							</div>
+							<div className="pull-right">
+								<select className="form-control" style={{minWidth: "140px", height: "30px"}} value={this.state.searchGoodsCategoryId} onChange={e => this.handleChangeSearchGoodsCategoryId(e)}>
+									<option value="">请选择商品分类</option>
+									{this.state.categories.map(x => <option value={x.id}>{x.name}</option>)}
+								</select>
 							</div>
 						</h3>
 						<div className="row">
@@ -109,6 +131,7 @@ class Goods_Main_Panel extends React.Component {
 												<tr>
 													<th>排序号</th>
 													<th>图片</th>
+													<th>商品分类</th>
 													<th>商品名称</th>
 													<th>原价<small>(元)</small></th>
 													<th>一级<small>(元)</small></th>
@@ -126,6 +149,7 @@ class Goods_Main_Panel extends React.Component {
 													<td>
 														<img height="60px" src={JSON.parse(x.pictureUrls)[0]}/>
 													</td>
+													<td>{x.categoryName}</td>
 													<td>{x.name}</td>
 													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.price)}</td>
 													<td><i className="fa fa-jpy" aria-hidden="true"></i>{fn_fen2yuan_in_thousands(x.priceLevel1)}</td>
