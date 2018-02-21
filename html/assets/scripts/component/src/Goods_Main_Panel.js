@@ -15,6 +15,7 @@ class Goods_Main_Panel extends React.Component {
 			neighborPageIndexs: [],
 			searchGoodsCategoryId: ""
 		};
+		this.handleClickSetBuyLimit = this.handleClickSetBuyLimit.bind(this);
 		this.handleClickEdit = this.handleClickEdit.bind(this);
 		this.reload = this.reload.bind(this);
 		this.handleClickPageIndex = this.handleClickPageIndex.bind(this);
@@ -28,6 +29,15 @@ class Goods_Main_Panel extends React.Component {
 			"apiName": "GoodsCategory_QueryAll_Api"
 		}, function(resp){
 			panel.setState({categories: resp.data});
+		});
+	}
+
+	handleClickSetBuyLimit(goods) {
+		fn_api({
+			"apiName": "Goods_QueryDetail_Api",
+			"goodsId": goods.id
+		}, function(resp){
+			goods_SetBuyLimit_Main_Modal.show({goodsId:goods.id, goodsDetail:resp.data});
 		});
 	}
 
@@ -164,6 +174,8 @@ class Goods_Main_Panel extends React.Component {
 													</td>
 													<td>{fn_format_date(new Date(x.dtCreate), "yyyy-MM-dd hh:mm:ss")}</td>
 													<td>
+														<button className="btn btn-default btn-sm" onClick={e => this.handleClickSetBuyLimit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 设置限购</button>
+														&nbsp;
 														<button className="btn btn-default btn-sm" onClick={e => this.handleClickEdit(x)}><i className="fa fa-pencil" aria-hidden="true"></i> 编辑</button>
 														&nbsp;
 														<button className="btn btn-default btn-sm" onClick={e => this.handleClickDelete(x)}><i className="fa fa-times" aria-hidden="true"></i> 下架</button>
