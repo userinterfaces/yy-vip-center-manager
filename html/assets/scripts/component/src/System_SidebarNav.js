@@ -12,6 +12,10 @@ class System_SidebarNav extends React.Component {
 				title: "商品库",
 				icon: "lnr lnr-dice"
 			}, {
+				name: "TicketGoods_Main_Panel",
+				title: "卡密商品库",
+				icon: "lnr lnr-dice"
+			}, {
 				name: "User_Main_Panel",
 				title: "用户管理",
 				icon: "lnr lnr-dice"
