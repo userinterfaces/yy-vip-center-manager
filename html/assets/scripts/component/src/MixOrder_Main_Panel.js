@@ -115,6 +115,13 @@ class MixOrder_Main_Panel extends React.Component {
 	}
 
 	buildReadableComment(mixOrder) {
+		if (mixOrder.isTicketGoodsOrder == 1){
+			return (
+				<div>
+					<span>卡密订单</span>
+				</div>
+			);
+		}
 		var template = mixOrder.goodsCommentTemplate;
 		var comment = JSON.parse(mixOrder.comment);
 		if (template == 0) {
@@ -210,19 +217,19 @@ class MixOrder_Main_Panel extends React.Component {
 															<td>{x.goodsName}</td>
 															<td>{this.buildReadableComment(x)}</td>
 															<td>
-																{x.isDispose == 1 &&
+																{x.isTicketGoodsOrder == 0 && x.isDispose == 1 &&
 																	<span className="label label-default">已处理</span>
 																}
-																{x.isDispose == 0 &&
+																{x.isTicketGoodsOrder == 0 && x.isDispose == 0 &&
 																	<span className="label label-success">未处理</span>
 																}
-																{x.refundRequestStatus == 1 &&
+																{x.isTicketGoodsOrder == 0 && x.refundRequestStatus == 1 &&
 																	<span className="label label-danger">退货中</span>
 																}
-																{x.refundRequestStatus == 2 &&
+																{x.isTicketGoodsOrder == 0 && x.refundRequestStatus == 2 &&
 																	<span className="label label-info">已退货</span>
 																}
-																{x.refundRequestStatus == 3 &&
+																{x.isTicketGoodsOrder == 0 && x.refundRequestStatus == 3 &&
 																	<span className="label label-warning">退货被拒绝</span>
 																}
 															</td>
